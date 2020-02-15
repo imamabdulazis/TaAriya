@@ -3,19 +3,28 @@ import {
     Text, View, StyleSheet,
     StatusBar, Dimensions
 } from 'react-native'
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MapView, { Callout, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Callout, PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import MyMapView from '../components/app/MapsView';
+import MapInput from '../components/app/MapInput';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import styles from '../components/styles';
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 
 export class Home extends Component {
-    state = {
-        region: {
-            latitude: -7.797068,
-            longitude: 110.370529,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-        },
+    constructor(props) {
+        super(props);
+        this.state = {
+            region: {
+                latitude: -7.797068,
+                longitude: 110.370529,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            },
+            name: 'Yogyakarta',
+            alamat: 'Daerah Istimewa Yogyakarta',
+        }
+
     }
 
     componentDidMount() {
@@ -42,58 +51,87 @@ export class Home extends Component {
         this.setState({ isMapReady: true })
     }
 
-    onRegionChange(region) {
-        this.setState({ region:region });
+    getCoordsFromName(loc) {
+        this.setState({
+            region: {
+                latitude: loc.lat,
+                longitude: loc.lng,
+                latitudeDelta: 0.003,
+                longitudeDelta: 0.003
+            }
+        });
+    }
+
+
+    getNameLocation(name) {
+        this.setState({
+            name: name.main_text,
+            alamat: name.secondary_text,
+        });
+    }
+
+    onMapRegionChange(region) {
+        this.setState({ region });
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar backgroundColor='#F4392C' />
-                <View style={{
-                    width: width, height: 100,
-                    backgroundColor: '#F4392C'
-                }}>
-                    <View style={{
-                        flexDirection: 'row', justifyContent: 'space-between',
-                        marginHorizontal: 20, alignItems: 'center'
-                    }}>
-                        <View>
-                            <Text style={{ color: '#fff', fontSize: 20 }}>Home</Text>
-                            <Text style={{ color: '#fff', }}>Cari bengkal terdekat dengan sekali sentuh</Text>
+            <View style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
+                    <MapView
+                        style={{ width: width, height: height, marginTop: 50 }}
+                        provider={PROVIDER_GOOGLE}
+                        mapType='hybrid'
+                        // showsScale
+                        zoomControlEnabled
+                        showsCompass
+                        zoomEnabled={true}
+                        showsPointsOfInterest
+                        showsBuildings
+                        onLayout={this.onMapLayout}>
+                        {this.state.isMapReady &&
+                            <Marker
+                                title={this.props.title}
+                                coordinate={{
+                                    latitude: this.state.region.latitude,
+                                    longitude: this.state.region.longitude
+                                }}
+                            />
+                        }
+                    </MapView>
+                    <Callout>
+                        <View style={{ flex: 1, backgroundColor: 'white' }}>
+                            <MapInput
+                                notifyChange={(loc) => this.getCoordsFromName(loc)}
+                                nameChange={(name) => this.getNameLocation(name)}
+                            />
+                            {
+                                this.state.region['latitude'] ?
+                                    <View style={{ flex: 1, }}>
+                                        <MyMapView
+                                            style={{ width: width, height: height }}
+                                            region={this.state.region}
+                                            onRegionChange={(reg) => this.onMapRegionChange(reg)} />
+                                    </View> : null}
                         </View>
-                        <AntDesign name='arrowright' size={20} color='#fff' />
+                    </Callout>
+                </View>
+                <View style={styles.cardShadowWhiteSmallLEftPadding2}>
+                    <Text style={{ color: '#C4C4C4', fontFamily: 'SFProDisplay-Regular', fontSize: 14 }}>Lokasi</Text>
+                    <View style={styles.divRowBetwen}>
+                        <View style={{ ...styles.divRowStart }}>
+                            <EvilIcons name='location' size={30} color='#C4C4C4' />
+                            <View style={{ width: width -100 }}>
+                                <Text style={{ color: '#3B485A', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.name}</Text>
+                                <Text style={{ color: 'grey', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.alamat}</Text>
+                            </View>
+                        </View>
+                        <View />
                     </View>
                 </View>
-                <MapView
-                    style={styles.container}
-                    provider='google'
-                    mapType='terrain'
-                    showsCompass
-                    showsScale
-                    zoomEnabled
-                    zoomTapEnabled
-                    region={this.state.region}
-                    // onRegionChange={this.onRegionChange}
-                >
-                    {this.state.isMapReady &&
-                        <MapView.Marker
-                            title={this.props.title}
-                            coordinate={{
-                                latitude: this.state.region.latitude,
-                                longitude: this.state.region.longitude
-                            }} />
-                    }
-                </MapView>
             </View>
         )
     }
 }
 
-export default Home
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-})
+export default Home;

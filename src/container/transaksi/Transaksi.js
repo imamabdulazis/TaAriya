@@ -5,7 +5,7 @@ export class Transaksi extends Component {
     render() {
         return (
             <View>
-                <Text> Transaksi </Text>
+                
             </View>
         )
     }
