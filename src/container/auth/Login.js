@@ -76,8 +76,7 @@ class Login extends Component {
                     <Spacer />
                     <Spacer />
                     <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('App')}
-                        // onPress={this.onSubmitLogin}
+                        onPress={this.onSubmitLogin}
                         style={{ backgroundColor: '#fff', width: width - 40, borderRadius: 10, fontSize: 14 }}>
                         <Text style={{ padding: 10, backgroundColor: '#fff', width: width - 40, borderRadius: 10, fontSize: 14, textAlign: 'center' }}>Login</Text>
                     </TouchableOpacity>
