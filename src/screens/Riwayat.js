@@ -29,7 +29,7 @@ export class Riwayat extends Component {
                 let data = response.data;
                 this.setState({ data: data, isLoading: false, refreshing: false })
                 this.arrayHolder = response.data;
-                console.info(data);
+                // console.info(data);
             }).catch((e) => {
                 console.info(e);
             })

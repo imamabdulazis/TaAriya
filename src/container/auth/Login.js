@@ -4,6 +4,7 @@ import styles from '../../components/styles';
 import { TextInput } from 'react-native-gesture-handler';
 import Spacer from '../../components/common/Spacers';
 import Loader from '../../components/common/Loader';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -41,9 +42,16 @@ class Login extends Component {
                 {(this.state.isLoading) && <Loader />}
                 <StatusBar translucent />
                 <ImageBackground
+                    blurRadius={3}
                     style={{ ...styles.container, justifyContent: 'center', alignItems: 'center' }}
                     source={require('../../assets/bg.jpeg')}>
-                    <Text style={{ fontSize: 50, fontWeight: '900', color: '#fff' }}>Bengkel Ariya</Text>
+                    <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                        <AntDesign name='codepen-circle' size={150} color='#fff' />
+                        <Text style={{
+                            padding: 10, width: width - 40, borderRadius: 10,
+                            fontSize: 25, textAlign: 'center', color: '#fff', fontWeight: '800'
+                        }}>Bengkel Ariya</Text>
+                    </View>
                     <Spacer />
                     <Spacer />
                     <Spacer />

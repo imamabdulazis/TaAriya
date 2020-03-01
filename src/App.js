@@ -1,5 +1,10 @@
-import AuthNav from './navigation';
-import { createAppContainer } from 'react-navigation';
+import React, { Component } from 'react';
+import MAINAPP from './navigation';
+import Cari from './screens/Cari';
 
-const App = createAppContainer(AuthNav);
+const App = () => {
+    return (
+        <MAINAPP />
+    )
+}
 export default App;

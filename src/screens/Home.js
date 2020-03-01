@@ -1,137 +1,124 @@
-import React, { Component } from 'react'
-import {
-    Text, View, StyleSheet,
-    StatusBar, Dimensions
-} from 'react-native'
-import MapView, { Callout, PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import MyMapView from '../components/app/MapsView';
-import MapInput from '../components/app/MapInput';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import styles from '../components/styles';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, Dimensions, TouchableHighlight } from 'react-native';
+import moment from 'moment';
+import 'moment/locale/id'
+import Octicons from 'react-native-vector-icons/Octicons';
+import Spacer from '../components/common/Spacers';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const { width, height } = Dimensions.get('screen');
-
-export class Home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            region: {
-                latitude: -7.797068,
-                longitude: 110.370529,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            },
-            name: 'Yogyakarta',
-            alamat: 'Daerah Istimewa Yogyakarta',
-        }
-
-    }
-
-    componentDidMount() {
-        this.getInitialState
-    }
-
-    getInitialState() {
-        getLocation().then(
-            (data) => {
-                console.log(data);
-                this.setState({
-                    region: {
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        latitudeDelta: 0.003,
-                        longitudeDelta: 0.003
-                    },
-                });
-            }
-        );
-    }
-
-    onMapLayout = () => {
-        this.setState({ isMapReady: true })
-    }
-
-    getCoordsFromName(loc) {
-        this.setState({
-            region: {
-                latitude: loc.lat,
-                longitude: loc.lng,
-                latitudeDelta: 0.003,
-                longitudeDelta: 0.003
-            }
-        });
-    }
-
-
-    getNameLocation(name) {
-        this.setState({
-            name: name.main_text,
-            alamat: name.secondary_text,
-        });
-    }
-
-    onMapRegionChange(region) {
-        this.setState({ region });
+        };
     }
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                    <MapView
-                        style={{ width: width, height: height, marginTop: 50 }}
-                        provider={PROVIDER_GOOGLE}
-                        mapType='hybrid'
-                        // showsScale
-                        zoomControlEnabled
-                        showsCompass
-                        zoomEnabled={true}
-                        showsPointsOfInterest
-                        showsBuildings
-                        onLayout={this.onMapLayout}>
-                        {this.state.isMapReady &&
-                            <Marker
-                                title={this.props.title}
-                                coordinate={{
-                                    latitude: this.state.region.latitude,
-                                    longitude: this.state.region.longitude
-                                }}
-                            />
-                        }
-                    </MapView>
-                    <Callout>
-                        <View style={{ flex: 1, backgroundColor: 'white' }}>
-                            <MapInput
-                                notifyChange={(loc) => this.getCoordsFromName(loc)}
-                                nameChange={(name) => this.getNameLocation(name)}
-                            />
-                            {
-                                this.state.region['latitude'] ?
-                                    <View style={{ flex: 1, }}>
-                                        <MyMapView
-                                            style={{ width: width, height: height }}
-                                            region={this.state.region}
-                                            onRegionChange={(reg) => this.onMapRegionChange(reg)} />
-                                    </View> : null}
-                        </View>
-                    </Callout>
-                </View>
-                <View style={styles.cardShadowWhiteSmallLEftPadding2}>
-                    <Text style={{ color: '#C4C4C4', fontFamily: 'SFProDisplay-Regular', fontSize: 14 }}>Lokasi</Text>
-                    <View style={styles.divRowBetwen}>
-                        <View style={{ ...styles.divRowStart }}>
-                            <EvilIcons name='location' size={30} color='#C4C4C4' />
-                            <View style={{ width: width -100 }}>
-                                <Text style={{ color: '#3B485A', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.name}</Text>
-                                <Text style={{ color: 'grey', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.alamat}</Text>
-                            </View>
-                        </View>
-                        <View />
+            <View style={{ flex: 1, backgroundColor: '#fff' }}>
+                <ScrollView>
+                    <View style={{ width: width - 30, flexDirection: 'row', justifyContent: 'space-between', marginTop: 15, marginHorizontal: 15 }}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16, }}>{moment(new Date()).format('dddd MMMM YYYY')} </Text>
+                        <TouchableOpacity>
+                            <Octicons name='settings' size={25} color='red' />
+                        </TouchableOpacity>
                     </View>
-                </View>
+                    <Spacer />
+                    <Spacer />
+                    <View style={{ width: width - 30, marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <AntDesign name='setting' size={40} color='red' />
+                            <Text>Servis</Text>
+                            <Text>Mesin</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='lifebuoy' size={40} color='red' />
+                            <Text>Tambal</Text>
+                            <Text>Ban</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='layers' size={40} color='red' />
+                            <Text>Ganti</Text>
+                            <Text>Jok</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='sina-weibo' size={40} color='red' />
+                            <Text>Ganti</Text>
+                            <Text>Oli</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Spacer />
+                    <View style={{ width: width - 30, marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='sound' size={40} color='red' />
+                            <Text>Servis</Text>
+                            <Text>Lampu</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='bell' size={40} color='red' />
+                            <Text>Servis</Text>
+                            <Text>Klakson</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='shopping-cart' size={40} color='red' />
+                            <Text>Beli</Text>
+                            <Text>Onderdil</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                            width: width / 5, borderRadius: 5, borderWidth: 1, borderColor: 'grey',
+                            height: width / 3, justifyContent: 'center', alignItems: 'center'
+                        }}>
+                            <Entypo name='landline' size={40} color='red' />
+                            <Text>Hubungi</Text>
+                            <Text>Bengkel</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Spacer/>
+                    <Spacer>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16, }}>Artikel Terkini</Text>
+                    </Spacer>
+                    <Spacer>
+                        <TouchableOpacity>
+                            <Card>
+                                <Card.Cover source={{ uri: 'https://picsum.photos/700' }}
+                                    style={{ height: width / 2.5 }}
+                                />
+                                <Card.Content>
+                                    <Title>Ariya Males Skripsi</Title>
+                                    <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+                                </Card.Content>
+                            </Card>
+                        </TouchableOpacity>
+                    </Spacer>
+                </ScrollView>
             </View>
-        )
+        );
     }
 }
 
+const { width, height } = Dimensions.get('screen');
 export default Home;
