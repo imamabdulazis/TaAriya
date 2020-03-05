@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 class SplashScreen extends Component {
@@ -11,10 +11,11 @@ class SplashScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <AntDesign name='codepen-circle' size={150} color='red' />
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fa6226' }}>
+                <StatusBar backgroundColor={"#fa6226"} barStyle='light-content' />
+                <AntDesign name='codepen-circle' size={150} color='#fff' />
                 <View style={{ width: '100%', position: 'absolute', bottom: 15, alignItems: 'center' }}>
-                    <ActivityIndicator color='red' size='large' />
+                    <ActivityIndicator color='#fff' size='large' />
                 </View>
             </View>
         );

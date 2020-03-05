@@ -5,6 +5,7 @@ import Riwayat from "../screens/Riwayat";
 import Acount from "../screens/Acount";
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from '../container/auth/Login';
@@ -36,19 +37,33 @@ const HOME = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name='homeScreen' component={Home} options={{
-                headerTitle: 'Dashboad',
+                headerTitle: 'Dashboard',
+                headerTitleStyle: {
+                    color: '#000'
+                },
+                headerStyle: {
+                    backgroundColor: '#fff',
+                    shadowColor: '#fff',
+                    shadowOpacity: 0,
+                    shadowOffset: {
+                        height: 0,
+                    },
+                    shadowRadius: 0,
+                    elevation: 0,
+                    borderBottomWidth: 0,
+                },
                 headerLeft: () => (
                     <TouchableOpacity
                         onPress={() => { }}
                         style={{ marginLeft: 15 }}>
-                        <AntDesign name='codepen-circle' size={30} color='red' />
+                        <MaterialIcons name='sort' size={30} color='#000' />
                     </TouchableOpacity>
                 ),
                 headerRight: () => (
                     <TouchableOpacity
                         onPress={() => { }}
                         style={{ marginRight: 15 }}>
-                        <Ionicons name="ios-notifications-outline" size={30} color='red' />
+                        <Ionicons name="ios-notifications-outline" size={30} color='#000' />
                     </TouchableOpacity>
                 )
             }} />
@@ -59,7 +74,21 @@ const HOME = () => {
 const RIWAYAT = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='riwayatSceen' component={Riwayat} options={{ headerTitle: 'Riwayat' }} />
+            <Stack.Screen name='riwayatSceen' component={Riwayat}
+                options={{
+                    headerTitle: 'Riwayat',
+                    headerStyle: {
+                        backgroundColor: '#fff',
+                        shadowColor: '#fff',
+                        shadowOpacity: 0,
+                        shadowOffset: {
+                            height: 0,
+                        },
+                        shadowRadius: 0,
+                        elevation: 0,
+                        borderBottomWidth: 0,
+                    },
+                }} />
         </Stack.Navigator>
     )
 }
@@ -84,8 +113,11 @@ const APPTAB = () => {
     return (
         <TAB.Navigator
             tabBarOptions={{
-                activeTintColor: 'red',
+                activeTintColor: '#fa6226',
                 keyboardHidesTabBar: true,
+                tabStyle: {
+                    backgroundColor: '#fff'
+                }
             }}>
             <TAB.Screen
                 name='Home'
@@ -94,7 +126,7 @@ const APPTAB = () => {
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ focused }) => (
                         focused
-                            ? <MaterialCommunityIcons name='home' size={30} color='red' />
+                            ? <MaterialCommunityIcons name='home' size={30} color='#fa6226' />
                             : <MaterialCommunityIcons name="home-outline" size={29} color='grey' />
                     ),
                 }} />
@@ -105,7 +137,7 @@ const APPTAB = () => {
                     tabBarLabel: 'Riwayat',
                     tabBarIcon: ({ focused }) => (
                         focused
-                            ? <Ionicons name='ios-time' size={30} color='red' />
+                            ? <Ionicons name='ios-time' size={30} color='#fa6226' />
                             : <Ionicons name="md-time" size={29} color='grey' />
                     ),
                 }} />
@@ -116,7 +148,7 @@ const APPTAB = () => {
                     tabBarLabel: 'Cari',
                     tabBarIcon: ({ focused }) => (
                         focused
-                            ? <Feather name='search' size={29} color='red' />
+                            ? <Feather name='search' size={29} color='#fa6226' />
                             : <Feather name="search" size={29} color='grey' />
                     ),
                 }} />
@@ -127,7 +159,7 @@ const APPTAB = () => {
                     tabBarLabel: 'Akun',
                     tabBarIcon: ({ focused }) => (
                         focused
-                            ? <MaterialCommunityIcons name='account-circle' size={30} color='red' />
+                            ? <MaterialCommunityIcons name='account-circle' size={30} color='#fa6226' />
                             : <MaterialCommunityIcons name="account-circle-outline" size={29} color='grey' />
                     ),
                 }} />
