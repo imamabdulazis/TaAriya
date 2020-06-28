@@ -12,15 +12,18 @@ import Login from '../container/auth/Login';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Cari from '../screens/Cari';
 import { View, Text, TouchableOpacity } from 'react-native';
 import SplashScreen from '../screens/SplashScreen';
+import Pengaturan from '../screens/Container/Pengaturan';
+import DrawerContent from './drawerContent';
 
 
 const Stack = createStackNavigator();
 const TAB = createBottomTabNavigator();
-
+const Drawer = createDrawerNavigator();
 
 const AUTH = () => {
     return (
@@ -33,40 +36,18 @@ const AUTH = () => {
     )
 }
 
-const HOME = () => {
+const HOME = ({ navigation, route }) => {
+    if (route.state && route.state.index > 0) {
+        navigation.setOptions({ tabBarVisible: false })
+    } else {
+        navigation.setOptions({ tabBarVisible: true })
+    }
     return (
-        <Stack.Navigator>
-            <Stack.Screen name='homeScreen' component={Home} options={{
-                headerTitle: 'Dashboard',
-                headerTitleStyle: {
-                    color: '#000'
-                },
-                headerStyle: {
-                    backgroundColor: '#fff',
-                    shadowColor: '#fff',
-                    shadowOpacity: 0,
-                    shadowOffset: {
-                        height: 0,
-                    },
-                    shadowRadius: 0,
-                    elevation: 0,
-                    borderBottomWidth: 0,
-                },
-                headerLeft: () => (
-                    <TouchableOpacity
-                        onPress={() => { }}
-                        style={{ marginLeft: 15 }}>
-                        <MaterialIcons name='sort' size={30} color='#000' />
-                    </TouchableOpacity>
-                ),
-                headerRight: () => (
-                    <TouchableOpacity
-                        onPress={() => { }}
-                        style={{ marginRight: 15 }}>
-                        <Ionicons name="ios-notifications-outline" size={30} color='#000' />
-                    </TouchableOpacity>
-                )
-            }} />
+        <Stack.Navigator
+            screenOptions={{ headerBackTitleVisible: false }}>
+            <Stack.Screen name='homeScreen' component={Home} />
+            <Stack.Screen name="cari" component={Cari} />
+            <Stack.Screen name="pengaturan" component={Pengaturan} />
         </Stack.Navigator>
     )
 }
@@ -109,7 +90,12 @@ const AKUN = () => {
     )
 }
 
-const APPTAB = () => {
+const APPTAB = ({ navigation, route }) => {
+    if (route.state && route.state.index > 0) {
+        navigation.setOptions({ gestureEnabled: false })
+    } else {
+        navigation.setOptions({ gestureEnabled: true })
+    }
     return (
         <TAB.Navigator
             tabBarOptions={{
@@ -167,6 +153,14 @@ const APPTAB = () => {
     )
 }
 
+const APPDRAWER = () => {
+    return (
+        <Drawer.Navigator drawerContent={() => <DrawerContent />}>
+            <Drawer.Screen name="mainDrawer" component={APPTAB} />
+        </Drawer.Navigator>
+    )
+}
+
 class MAINAPP extends React.Component {
     state = {
         splash: true
@@ -183,7 +177,7 @@ class MAINAPP extends React.Component {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
                     initialRouteName='mainApp'>
-                    <Stack.Screen name='mainApp' component={APPTAB} />
+                    <Stack.Screen name='mainApp' component={APPDRAWER} />
                     <Stack.Screen name='authApp' component={AUTH} />
                 </Stack.Navigator>
             </NavigationContainer>

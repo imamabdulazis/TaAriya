@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
     container: {
@@ -34,7 +34,22 @@ export default StyleSheet.create({
         shadowRadius: 5,
         elevation: 2
     },
-
-    
+    drawerContent: {
+        flex: 1,
+        height: Dimensions.get('screen').height - 84, padding: 10
+    },
+    menuDrawer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+    },
+    menuTitleStyle: {
+        fontWeight: '300',
+        fontSize: 14,
+        color: "#000",
+        paddingLeft: 15
+    },
 
 })

@@ -5,22 +5,49 @@ import 'moment/locale/id'
 import Octicons from 'react-native-vector-icons/Octicons';
 import Spacer from '../components/common/Spacers';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Button, Card, Title, Paragraph, TouchableRipple } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 import { SearchBar } from 'react-native-elements';
 import styles from '../components/styles';
+import { DrawerActions } from '@react-navigation/native';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+        this.props.navigation.setOptions({
+            headerTitle: 'Dashboard',
+            headerTitleStyle: {
+                color: '#000'
+            },
+            headerStyle: {
+                backgroundColor: '#fff',
+                shadowColor: '#fff',
+                shadowOpacity: 0,
+                shadowOffset: {
+                    height: 0,
+                },
+                shadowRadius: 0,
+                elevation: 0,
+                borderBottomWidth: 0,
+            },
+            headerLeft: () => (
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
+                    style={{ marginLeft: 15 }}>
+                    <MaterialIcons name='sort' size={30} color='#000' />
+                </TouchableOpacity>
+            ),
+        })
     }
 
     render() {
+        const { navigation } = this.props;
         return (
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 <StatusBar backgroundColor='#fff' barStyle='dark-content' />
@@ -28,35 +55,21 @@ class Home extends Component {
                     <ImageBackground
                         source={{ uri: 'https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80' }}
                         style={{ width: width, height: width / 1.5 }}>
-                        <SearchBar
-                            placeholder="Cari"
-                            containerStyle={{ backgroundColor: '#fff', marginTop: -2 }}
-                            inputContainerStyle={{ backgroundColor: '#d4d4d4' }}
-                        />
-                    </ImageBackground>
-                    <View style={{ ...styles.cardShadowWhiteSmallLEftPadding2, marginTop: -40 }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                                <View style={{
-                                    width: 50, height: 50, borderRadius: 25,
-                                    backgroundColor: '#fa6226', justifyContent: 'center', alignItems: 'center'
-                                }}>
-                                    <Entypo name="location-pin" color="#fff" size={35} />
+                        <View style={{ padding: 10, backgroundColor: '#fff' }}>
+                            <TouchableRipple
+                                onPress={() => navigation.navigate('cari')}
+                                style={{ padding: 10, backgroundColor: '#dedede', borderRadius: 10 }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <AntDesign name="search1" size={15} color={'grey'} />
+                                    <Text style={{ marginLeft: 5, color: 'grey' }}>Mau cari apa?</Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text>Tempat</Text>
-                                    <Text>Jalan</Text>
-                                </View>
-                            </View>
-
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <Ionicons name="ios-switch" size={40} color="#fa6226" />
-                            </View>
+                            </TouchableRipple>
                         </View>
-                    </View>
+                    </ImageBackground>
                     <View style={{ width: width - 30, flexDirection: 'row', justifyContent: 'space-between', marginTop: 15, marginHorizontal: 15 }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>{moment(new Date()).format('dddd, Do MMMM YYYY')} </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('pengaturan')}>
                             <Octicons name='settings' size={25} color='#000' />
                         </TouchableOpacity>
                     </View>
