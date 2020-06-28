@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, StatusBar, Dimensions, Button, TouchableOpacity, Alert } from 'react-native';
-import styles from '../../components/styles';
 import { TextInput } from 'react-native-gesture-handler';
-import Spacer from '../../components/common/Spacers';
-import Loader from '../../components/common/Loader';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Spacer from '../components/common/Spacers';
+import Loader from '../components/common/Loader';
 
 const { width, height } = Dimensions.get('screen');
 

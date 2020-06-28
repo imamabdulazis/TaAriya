@@ -43,7 +43,7 @@ export class Acount extends Component {
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <MaterialIcons name="person" size={20} color="grey" />
-                                <Text style={{ fontSize: 16, fontWeight: '300' }}>Ubah Profil</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Profil</Text>
                             </View>
                             <MaterialIcons name="navigate-next" size={20} color="grey" />
                         </View>
@@ -52,7 +52,7 @@ export class Acount extends Component {
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <MaterialIcons name="pin-drop" size={20} color="grey" />
-                                <Text style={{ fontSize: 16, fontWeight: '300' }}>Alamat</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Alamat</Text>
                             </View>
                             <MaterialIcons name="navigate-next" size={20} color="grey" />
                         </View>
@@ -63,7 +63,7 @@ export class Acount extends Component {
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <MaterialIcons name="lock" size={17} color="grey" />
-                                <Text style={{ fontSize: 16, fontWeight: '300' }}>Ubah Kata Sandi</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Kata Sandi</Text>
                             </View>
                             <MaterialIcons name="navigate-next" size={20} color="grey" />
                         </View>
@@ -74,7 +74,7 @@ export class Acount extends Component {
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <MaterialIcons name="info" size={20} color="grey" />
-                                <Text style={{ fontSize: 16, fontWeight: '300' }}>Tentang Aplikasi</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Tentang Aplikasi</Text>
                             </View>
                             <MaterialIcons name="navigate-next" size={20} color="grey" />
                         </View>

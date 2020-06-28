@@ -8,7 +8,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from '../container/auth/Login';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
@@ -19,6 +18,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import SplashScreen from '../screens/SplashScreen';
 import Pengaturan from '../screens/Container/Pengaturan';
 import DrawerContent from './drawerContent';
+import Login from '../screens/Login';
 
 
 const Stack = createStackNavigator();
