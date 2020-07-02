@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/bottom-tabs": "^5.1.0",
     "@react-navigation/drawer": "^5.8.4",
@@ -23,11 +24,15 @@
     "react-native-gesture-handler": "^1.6.0",
     "react-native-google-places-autocomplete": "^1.4.1",
     "react-native-maps": "^0.26.1",
+    "react-native-modal": "^11.5.6",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.2.0",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-toasty": "^1.0.1",
     "react-native-vector-icons": "^6.6.0",
+    "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },

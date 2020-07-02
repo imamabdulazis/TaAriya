@@ -41,7 +41,7 @@ class MapInput extends React.Component {
                         height: 55
                     },
                     description: {
-                        fontFamily: 'SFProDisplay-Regular',
+                        // fontFamily: 'SFProDisplay-Regular',
                     },
                 }}
                 nearbyPlacesAPI='GooglePlacesSearch'

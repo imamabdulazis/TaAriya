@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { checkSession } from '../redux/actions/authActions';
+import { connect } from 'react-redux';
 
 class SplashScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+    }
+
+    componentDidMount() {
+        this.props.checkSession();
     }
 
     render() {
@@ -22,4 +28,12 @@ class SplashScreen extends Component {
     }
 }
 
-export default SplashScreen;
+const mapStateTopProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    checkSession: () => dispatch(checkSession()),
+})
+
+export default connect(mapStateTopProps, mapDispatchToProps)(SplashScreen);

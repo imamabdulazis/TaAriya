@@ -8,21 +8,25 @@ import {
   Modal
 } from 'react-native';
 import Spacer from './Spacers';
+import colors from './Color';
 
-export default class Loader extends Component<{}> {
-  render() {
-    return (
-      <Modal
-        transparent>
-        <View style={styles.container}>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <ActivityIndicator color="#ffffff" size="large" />
-            <Text style={{ color: '#ffff', fontFamily: 'SFProDisplay-Medium', fontSize: 14 }}>Loading.......</Text>
-          </View>
+export default function Loader({
+  title = 'Loading...'
+}) {
+  return (
+    <Modal
+      transparent>
+      <View style={styles.container}>
+        <View style={{
+          flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+          backgroundColor: colors.white,padding:10,borderRadius:5
+        }}>
+          <ActivityIndicator color={colors.black} size='small' />
+          <Text style={{ color: colors.black, fontSize: 14 }}>{title}</Text>
         </View>
-      </Modal>
-    )
-  }
+      </View>
+    </Modal>
+  )
 }
 
 const styles = StyleSheet.create({

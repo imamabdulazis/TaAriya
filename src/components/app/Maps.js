@@ -117,13 +117,13 @@ export class Maps extends Component {
                     </Callout>
                 </View>
                 <View style={styles.cardShadowWhiteSmallLEftPadding2}>
-                    <Text style={{ color: '#C4C4C4', fontFamily: 'SFProDisplay-Regular', fontSize: 14 }}>Lokasi</Text>
+                    <Text style={{ color: '#C4C4C4', fontSize: 14 }}>Lokasi</Text>
                     <View style={styles.divRowBetwen}>
                         <View style={{ ...styles.divRowStart }}>
                             <EvilIcons name='location' size={30} color='#C4C4C4' />
                             <View style={{ width: width - 100 }}>
-                                <Text style={{ color: '#3B485A', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.name}</Text>
-                                <Text style={{ color: 'grey', fontFamily: 'SFProDisplay-Regular', fontSize: 14, textAlign: 'left' }}>{this.state.alamat}</Text>
+                                <Text style={{ color: '#3B485A', fontSize: 14, textAlign: 'left' }}>{this.state.name}</Text>
+                                <Text style={{ color: 'grey', fontSize: 14, textAlign: 'left' }}>{this.state.alamat}</Text>
                             </View>
                         </View>
                         <View />

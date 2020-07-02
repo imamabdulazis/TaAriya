@@ -1,10 +1,45 @@
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
+import colors from './common/Color';
+
+const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff'
+    },
+    largeSpacer: {
+        margin: 20
+    },
+    spacersmall: {
+        margin: 5,
+    },
+    paginationCarousel: {
+        backgroundColor: colors.transparent,
+        height: 70,
+        marginTop: -15,
+        marginBottom: -15,
+        marginLeft: -15,
+        justifyContent: 'flex-start',
+    },
+    searchbarHome: {
+        paddingHorizontal: 10,
+        marginLeft: 40,
+        paddingVertical: 8,
+        backgroundColor: colors.smoke,
+        borderRadius: 5,
+        width: width / 1.3,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    searchBar: {
+        width: width / 1.2,
+        marginLeft: 20,
+        height: 32,
+        elevation: 0,
+        backgroundColor: colors.smoke,
+        color: colors.gray,
     },
     divRowBetwen: {
         flexDirection: 'row',
@@ -50,6 +85,91 @@ export default StyleSheet.create({
         fontSize: 14,
         color: "#000",
         paddingLeft: 15
+    },
+    btnContainPrimary: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: width - 40,
+        backgroundColor: colors.primary,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnContainNeutral: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: width - 40,
+        backgroundColor: colors.lightgray,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnContainNeutral: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: width - 40,
+        backgroundColor: colors.lightgray,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnOutlineNeutral: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: width - 40,
+        backgroundColor: colors.white,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: colors.gray,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnOutlinePrimary: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: width - 40,
+        backgroundColor: colors.white,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: colors.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnMenuHome: {
+        width: width / 6, borderRadius: (width / 6) / 2,
+        height: width / 6, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fa6226'
+    },
+    // flex direction
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    rowBetweenCenter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    rowBetweenEnd: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+    },
+    rowBetweenStart: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+    },
+    rowBottomAbsoluteBeetwen: {
+        width: width - 80,
+        bottom: 10, position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    rowBottomAbsoluteCenter: {
+        width: width,
+        bottom: 10, position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
 
 })

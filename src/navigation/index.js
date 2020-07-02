@@ -19,6 +19,12 @@ import SplashScreen from '../screens/SplashScreen';
 import Pengaturan from '../screens/Container/Pengaturan';
 import DrawerContent from './drawerContent';
 import Login from '../screens/Login';
+import { navigationRef } from '../services/nav';
+import { connect } from 'react-redux';
+import Tentang from '../screens/Container/Tentang';
+import UbahProfil from '../screens/Container/UbahProfil';
+import UbahPassword from '../screens/Container/UbahPassword';
+import Alamat from '../screens/Container/Alamat';
 
 
 const Stack = createStackNavigator();
@@ -29,7 +35,7 @@ const AUTH = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerShown: false
+                headerShown: false,
             }}>
             <Stack.Screen name='loginScreen' component={Login} />
         </Stack.Navigator>
@@ -44,7 +50,21 @@ const HOME = ({ navigation, route }) => {
     }
     return (
         <Stack.Navigator
-            screenOptions={{ headerBackTitleVisible: false }}>
+            screenOptions={{
+                headerBackTitleVisible: false,
+                headerTintColor: '#000',
+                headerStyle: {
+                    backgroundColor: '#fff',
+                    shadowColor: '#fff',
+                    shadowOpacity: 0,
+                    shadowOffset: {
+                        height: 0,
+                    },
+                    shadowRadius: 0,
+                    elevation: 0,
+                    borderBottomWidth: 0,
+                },
+            }}>
             <Stack.Screen name='homeScreen' component={Home} />
             <Stack.Screen name="cari" component={Cari} />
             <Stack.Screen name="pengaturan" component={Pengaturan} />
@@ -54,7 +74,8 @@ const HOME = ({ navigation, route }) => {
 
 const RIWAYAT = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{ headerTintColor: '#000' }}>
             <Stack.Screen name='riwayatSceen' component={Riwayat}
                 options={{
                     headerTitle: 'Riwayat',
@@ -76,7 +97,20 @@ const RIWAYAT = () => {
 
 const CARI = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+            headerTintColor: '#000',
+            headerStyle: {
+                backgroundColor: '#fff',
+                shadowColor: '#fff',
+                shadowOpacity: 0,
+                shadowOffset: {
+                    height: 0,
+                },
+                shadowRadius: 0,
+                elevation: 0,
+                borderBottomWidth: 0,
+            },
+        }}>
             <Stack.Screen name='cariScreen' component={Cari} options={{ headerTitle: 'Cari' }} />
         </Stack.Navigator>
     )
@@ -84,8 +118,13 @@ const CARI = () => {
 
 const AKUN = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerTintColor: '#000', headerBackTitleVisible: false }}>
             <Stack.Screen name='akunScreen' component={Acount} options={{ headerTitle: 'Akun' }} />
+            <Stack.Screen name='pengaturanScreen' component={Pengaturan} options={{ headerTitle: 'Akun' }} />
+            <Stack.Screen name='ubahProfil' component={UbahProfil} options={{ headerTitle: 'Edit Profil' }} />
+            <Stack.Screen name='alamat' component={Alamat} options={{ headerTitle: 'Alamat' }} />
+            <Stack.Screen name='ubahPassword' component={UbahPassword} options={{ headerTitle: 'Edit Password' }} />
+            <Stack.Screen name='tentang' component={Tentang} options={{ headerTitle: 'Tentang Aplikasi' }} />
         </Stack.Navigator>
     )
 }
@@ -169,20 +208,32 @@ class MAINAPP extends React.Component {
         setTimeout(() => { this.setState({ splash: false }) }, 1500)
     }
     render() {
+        const { user } = this.props;
         if (this.state.splash) {
             return <SplashScreen />
         }
         return (
-            <NavigationContainer>
+            <NavigationContainer ref={navigationRef}>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
                     initialRouteName='mainApp'>
-                    <Stack.Screen name='mainApp' component={APPDRAWER} />
-                    <Stack.Screen name='authApp' component={AUTH} />
+                    {
+                        user === undefined
+                            ? <Stack.Screen name='authApp' component={AUTH} />
+                            : <Stack.Screen name='mainApp' component={APPDRAWER} />
+                    }
                 </Stack.Navigator>
             </NavigationContainer>
         )
     }
 }
 
-export default MAINAPP;
+const mapStateToProps = (state) => ({
+    user: state.authReducer.user,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MAINAPP);

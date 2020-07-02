@@ -71,6 +71,10 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>HelveticaNeuBold.ttf</string>
+		<string>HelveticaNeueLight.ttf</string>
+		<string>HelveticaNeueMedium.ttf</string>
+		<string>HelveticaNeueThin.ttf</string>
 	</array>
 </dict>
 </plist>

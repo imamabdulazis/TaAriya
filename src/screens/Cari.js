@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+// import { SearchBar } from 'react-native-paper';
 import styles from '../components/styles';
 import Spacer from '../components/common/Spacers';
 import { pencarian } from '../assets/data';
+import SpacerSmall from '../components/common/SpacerSmall';
+import colors from '../components/common/Color';
+import { Searchbar } from 'react-native-paper';
 
 class Cari extends Component {
     constructor(props) {
@@ -11,32 +14,40 @@ class Cari extends Component {
         this.state = {
         };
         this.props.navigation.setOptions({
-            headerTitle: "Cari"
+            headerTitle: () => (
+                <SpacerSmall>
+                    <Searchbar
+                        placeholder="Cari sesuatu?"
+                        placeholderTextColor={colors.gray}
+                        autoFocus
+                        style={styles.searchBar}
+                    />
+                </SpacerSmall>
+            )
         })
     }
 
-    renderHeader = () => {
-        return (
-            <SearchBar
-                placeholder="Mau cari apa?"
-                containerStyle={{ backgroundColor: '#fff', height: 60, marginBottom: 5, marginTop: -1 }}
-                inputContainerStyle={{ backgroundColor: '#dedede', borderRadius: 10 }}
-                lightTheme
-                round
-                cancelIcon
-                clearIcon
-            // showLoading={this.state.search}
-            // autoCorrect={false}
-            // onChangeText={text => this.searchFilter(text)}
-            // value={this.state.value}
-            />
-        )
-    }
+    // renderHeader = () => {
+    //     return (
+    //         <SearchBar
+    //             placeholder="Mau cari apa?"
+    //             containerStyle={{ backgroundColor: '#fff', height: 60, marginBottom: 5, marginTop: -1 }}
+    //             inputContainerStyle={{ backgroundColor: '#dedede', borderRadius: 10 }}
+    //             lightTheme
+    //             round
+    //             cancelIcon
+    //             clearIcon
+    //         // showLoading={this.state.search}
+    //         // autoCorrect={false}
+    //         // onChangeText={text => this.searchFilter(text)}
+    //         // value={this.state.value}
+    //         />
+    //     )
+    // }
 
     render() {
         return (
             <View style={styles.container}>
-                {this.renderHeader()}
                 <Spacer>
                     <View style={{ flexDirection: 'row', alignContent: 'center' }}>
                         <Text style={{ fontSize: 14, fontWeight: '600' }}>Pencarian terakhir</Text>
