@@ -7,7 +7,7 @@ import Spacer from '../components/common/Spacers';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { TouchableRipple, Menu, Divider, Provider } from 'react-native-paper';
 import { ListItem } from 'react-native-elements';
-import { logout } from '../redux/actions/authActions';
+import { logout } from '../redux/actions/userActions';
 import { connect } from 'react-redux';
 import LargeSpacer from '../components/common/LargeSpacer';
 import Loader from '../components/common/Loader';
@@ -73,48 +73,54 @@ export class Acount extends Component {
                                 <Text style={{ fontSize: 16, fontWeight: '300' }}>imamabdulazis@gmail.com</Text>
                             </View>
                         </View>
-                        <Text style={{ fontSize: 20, fontWeight: '400', marginTop: 20, marginVertical: 10 }}>Akun</Text>
-                        <TouchableRipple onPress={() => nav.navigate('ubahProfil')}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <MaterialIcons name="person" size={20} color="grey" />
-                                    <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Profil</Text>
-                                </View>
-                                <MaterialIcons name="navigate-next" size={20} color="grey" />
-                            </View>
-                        </TouchableRipple>
-                        <TouchableRipple onPress={() => nav.navigate('alamat')}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <MaterialIcons name="pin-drop" size={20} color="grey" />
-                                    <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Alamat</Text>
-                                </View>
-                                <MaterialIcons name="navigate-next" size={20} color="grey" />
-                            </View>
-                        </TouchableRipple>
-
-                        <Text style={{ fontSize: 20, fontWeight: '400', marginVertical: 10 }}>Kemanan</Text>
-                        <TouchableRipple onPress={() => nav.navigate('ubahPassword')}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <MaterialIcons name="lock" size={17} color="grey" />
-                                    <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Kata Sandi</Text>
-                                </View>
-                                <MaterialIcons name="navigate-next" size={20} color="grey" />
-                            </View>
-                        </TouchableRipple>
-
-                        <Text style={{ fontSize: 20, fontWeight: '400', marginVertical: 10 }}>Tentang</Text>
-                        <TouchableRipple onPress={() => nav.navigate('tentang')}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <MaterialIcons name="info" size={20} color="grey" />
-                                    <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Tentang Aplikasi</Text>
-                                </View>
-                                <MaterialIcons name="navigate-next" size={20} color="grey" />
-                            </View>
-                        </TouchableRipple>
                     </Spacer>
+                    <Spacer>
+                        <Text style={{ fontSize: 20, fontWeight: '400', marginTop: 20, marginVertical: 10 }}>Akun</Text>
+                    </Spacer>
+                    <TouchableRipple style={{ paddingHorizontal: 20 }} onPress={() => nav.navigate('ubahProfil')}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <MaterialIcons name="person" size={20} color="grey" />
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Profil</Text>
+                            </View>
+                            <MaterialIcons name="navigate-next" size={20} color="grey" />
+                        </View>
+                    </TouchableRipple>
+                    <TouchableRipple style={{ paddingHorizontal: 20 }} onPress={() => nav.navigate('alamat')}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <MaterialIcons name="pin-drop" size={20} color="grey" />
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Alamat</Text>
+                            </View>
+                            <MaterialIcons name="navigate-next" size={20} color="grey" />
+                        </View>
+                    </TouchableRipple>
+
+                    <Spacer>
+                        <Text style={{ fontSize: 20, fontWeight: '400', marginVertical: 10 }}>Kemanan</Text>
+                    </Spacer>
+                    <TouchableRipple style={{ paddingHorizontal: 20 }} onPress={() => nav.navigate('ubahPassword')}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <MaterialIcons name="lock" size={17} color="grey" />
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Ubah Kata Sandi</Text>
+                            </View>
+                            <MaterialIcons name="navigate-next" size={20} color="grey" />
+                        </View>
+                    </TouchableRipple>
+
+                    <Spacer>
+                        <Text style={{ fontSize: 20, fontWeight: '400', marginVertical: 10 }}>Tentang</Text>
+                    </Spacer>
+                    <TouchableRipple style={{ paddingHorizontal: 20 }} onPress={() => nav.navigate('tentang')}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <MaterialIcons name="info" size={20} color="grey" />
+                                <Text style={{ fontSize: 16, fontWeight: '300', marginLeft: 10 }}>Tentang Aplikasi</Text>
+                            </View>
+                            <MaterialIcons name="navigate-next" size={20} color="grey" />
+                        </View>
+                    </TouchableRipple>
                     <Modal
                         isVisible={dialog}
                         onBackdropPress={this.toggleDialog}
@@ -142,8 +148,8 @@ export class Acount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.authReducer.loading,
-    user: state.authReducer.user,
+    loading: state.user.loading,
+    token: state.user.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({

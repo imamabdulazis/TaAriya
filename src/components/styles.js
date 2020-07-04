@@ -25,7 +25,6 @@ export default StyleSheet.create({
     },
     searchbarHome: {
         paddingHorizontal: 10,
-        marginLeft: 40,
         paddingVertical: 8,
         backgroundColor: colors.smoke,
         borderRadius: 5,
@@ -34,9 +33,9 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     searchBar: {
-        width: width / 1.2,
-        marginLeft: 20,
-        height: 32,
+        width: width / 1.25,
+        marginLeft: -20,
+        height: 45,
         elevation: 0,
         backgroundColor: colors.smoke,
         color: colors.gray,

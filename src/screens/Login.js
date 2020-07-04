@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
     View, Text, ImageBackground, StatusBar, Dimensions, Button, TouchableOpacity,
-    Alert, SafeAreaView, TextInput,
+    Alert, SafeAreaView, TextInput, Image
 } from 'react-native';
-import { login } from '../redux/actions/authActions';
+import { login } from '../redux/actions/userActions';
 import * as nav from '../services/nav';
 import { RNToasty } from 'react-native-toasty'
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -15,8 +15,9 @@ import LargeSpacer from '../components/common/LargeSpacer';
 import SpacerBotTop from '../components/common/SpacerBotTop';
 import colors from '../components/common/Color';
 import textStyles from '../components/common/typography';
-import { Divider, TouchableRipple } from 'react-native-paper';
+import { Divider, TouchableRipple, HelperText } from 'react-native-paper';
 import { connect } from 'react-redux';
+import LottieView from 'lottie-react-native';
 import Loader from '../components/common/Loader';
 
 const { width, height } = Dimensions.get('screen');
@@ -46,12 +47,19 @@ class Login extends Component {
             <SafeAreaView style={{ ...styles.container, justifyContent: 'center', alignItems: 'center' }}>
                 {(loading) && <Loader title="Loging In" />}
                 <StatusBar translucent />
+                <SpacerBotTop>
+                    <Image
+                        source={require('../assets/obeng.png')}
+                        style={{ width: 150, height: 150 }}
+                    />
+                </SpacerBotTop>
+                <LargeSpacer />
                 <LargeSpacer>
                     <SpacerBotTop>
                         <View style={styles.row}>
                             <SimpleLineIcons name="user" size={18} color={colors.gray} />
                             <TextInput
-                                placeholder="No.Handphone/Email/Username"
+                                placeholder="Email"
                                 style={{ height: 40, width: width / 1.2, marginLeft: 10, ...textStyles.mediumText }}
                                 autoCapitalize='none'
                                 keyboardType='default'
@@ -61,13 +69,14 @@ class Login extends Component {
                             />
                         </View>
                         <Divider />
+                        <HelperText type="info" visible={false} style={{ marginTop: -10 }} />
                     </SpacerBotTop>
                     <SpacerBotTop>
                         <View style={styles.row}>
                             <SimpleLineIcons name="lock" size={18} color={colors.gray} />
                             <TextInput
                                 placeholder="Password"
-                                style={{ height: 40, width: width / 1.6, marginLeft: 10, ...textStyles.mediumText }}
+                                style={{ height: 40, width: width / 1.3, marginLeft: 10, ...textStyles.mediumText }}
                                 autoCapitalize='none'
                                 keyboardType='default'
                                 secureTextEntry={secure}
@@ -78,13 +87,10 @@ class Login extends Component {
                             <TouchableOpacity onPress={this.toggleSecure}>
                                 <Ionicons name={secure ? "ios-eye-off" : "ios-eye"} size={23} color={colors.lightgray} />
                             </TouchableOpacity>
-                            <View style={{ width: 1, marginHorizontal: 10, height: 20, backgroundColor: colors.lightgray }} />
-                            <TouchableOpacity onPress={() => { }}>
-                                <Text style={{ ...textStyles.mediumText, color: colors.pink }}>Lupa?</Text>
-                            </TouchableOpacity>
                         </View>
                         <Divider />
                     </SpacerBotTop>
+                    <LargeSpacer />
                     <SpacerBotTop>
                         <TouchableRipple
                             onPress={this.onSubmitLogin}
@@ -95,8 +101,8 @@ class Login extends Component {
                     </SpacerBotTop>
                     <SpacerBotTop>
                         <View style={styles.rowBetweenCenter}>
-                            <TouchableOpacity onPress={() => { }}>
-                                <Text style={{ ...textStyles.mediumText, color: colors.pink }}>Daftar</Text>
+                            <TouchableOpacity onPress={() => nav.navigate('registerScreen')}>
+                                <Text style={{ ...textStyles.mediumTextSemibold, color: colors.pink }}>Daftar</Text>
                             </TouchableOpacity>
                         </View>
                     </SpacerBotTop>
@@ -108,7 +114,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.authReducer.loading,
+    loading: state.user.loading,
 })
 
 const mapDispatchToProps = (dispatch) => ({

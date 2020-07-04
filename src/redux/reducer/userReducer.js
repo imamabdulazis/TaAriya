@@ -2,12 +2,11 @@ const { AUTH_ACTION } = require("../../utils/Constants");
 
 const initialState = {
     loading: false,
-    loadingLogout: false,
-    user: undefined,
+    token: undefined,
     failed: false,
 }
 
-export const authReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_ACTION.AUTH_REQ_LOGIN:
             return {
@@ -16,7 +15,7 @@ export const authReducer = (state = initialState, action) => {
         case AUTH_ACTION.AUTH_SUCCESS_LOGIN:
             return {
                 loading: false,
-                user: action.payload,
+                token: action.token,
             }
         case AUTH_ACTION.AUTH_FAILED_LOGIN:
             return {

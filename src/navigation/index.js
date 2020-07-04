@@ -25,6 +25,7 @@ import Tentang from '../screens/Container/Tentang';
 import UbahProfil from '../screens/Container/UbahProfil';
 import UbahPassword from '../screens/Container/UbahPassword';
 import Alamat from '../screens/Container/Alamat';
+import Register from '../screens/Register';
 
 
 const Stack = createStackNavigator();
@@ -33,11 +34,9 @@ const Drawer = createDrawerNavigator();
 
 const AUTH = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}>
-            <Stack.Screen name='loginScreen' component={Login} />
+        <Stack.Navigator>
+            <Stack.Screen name='loginScreen' component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name='registerScreen' component={Register} />
         </Stack.Navigator>
     )
 }
@@ -166,7 +165,7 @@ const APPTAB = ({ navigation, route }) => {
                             : <Ionicons name="md-time" size={29} color='grey' />
                     ),
                 }} />
-            <TAB.Screen
+            {/* <TAB.Screen
                 name='Cari'
                 component={CARI}
                 options={{
@@ -176,7 +175,7 @@ const APPTAB = ({ navigation, route }) => {
                             ? <Feather name='search' size={29} color='#fa6226' />
                             : <Feather name="search" size={29} color='grey' />
                     ),
-                }} />
+                }} /> */}
             <TAB.Screen
                 name='Akun'
                 component={AKUN}
@@ -208,7 +207,7 @@ class MAINAPP extends React.Component {
         setTimeout(() => { this.setState({ splash: false }) }, 1500)
     }
     render() {
-        const { user } = this.props;
+        const { token } = this.props;
         if (this.state.splash) {
             return <SplashScreen />
         }
@@ -218,7 +217,7 @@ class MAINAPP extends React.Component {
                     screenOptions={{ headerShown: false }}
                     initialRouteName='mainApp'>
                     {
-                        user === undefined
+                        token === undefined
                             ? <Stack.Screen name='authApp' component={AUTH} />
                             : <Stack.Screen name='mainApp' component={APPDRAWER} />
                     }
@@ -229,7 +228,7 @@ class MAINAPP extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.authReducer.user,
+    token: state.user.token,
 })
 
 const mapDispatchToProps = (dispatch) => ({
