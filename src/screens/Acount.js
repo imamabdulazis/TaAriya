@@ -65,12 +65,12 @@ export class Acount extends Component {
                     <Spacer>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 30 }}>
                             <Image
-                                source={{ uri: "https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" }}
+                                source={{ uri: "https://lh3.googleusercontent.com/ogw/ADGmqu-i4FvvGJClKfZCa4PKwSVrwxnFfAbiUgr18k2S=s32-c-mo" }}
                                 style={{ width: width / 7, height: width / 7, borderRadius: (width / 7) / 2 }}
                             />
                             <View style={{ marginHorizontal: 10 }}>
-                                <Text style={{ fontSize: 16, fontWeight: '500' }}>Imam Abdul Azis</Text>
-                                <Text style={{ fontSize: 16, fontWeight: '300' }}>imamabdulazis@gmail.com</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '500' }}>Ariya Eka S</Text>
+                                <Text style={{ fontSize: 16, fontWeight: '300' }}>ariyaekas@gmail.com</Text>
                             </View>
                         </View>
                     </Spacer>
