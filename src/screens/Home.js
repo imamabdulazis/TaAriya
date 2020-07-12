@@ -19,7 +19,7 @@ import { DrawerActions } from '@react-navigation/native';
 import SpacerSmall from '../components/common/SpacerSmall';
 import textStyles from '../components/common/typography';
 import colors from '../components/common/Color';
-import { artikel } from '../assets/data';
+import { artikel } from '../assets/data/data';
 import SpacerBotTop from '../components/common/SpacerBotTop';
 
 class Home extends Component {
@@ -35,7 +35,7 @@ class Home extends Component {
                         <AntDesign name="search1" size={15} color={colors.gray} />
                         <SpacerSmall />
                         <Text style={{ ...textStyles.largeText, color: colors.gray }}>
-                            Mau cari apa?
+                            Mau servis apa?
                         </Text>
                     </View>
                 </TouchableOpacity>
@@ -54,13 +54,6 @@ class Home extends Component {
                 elevation: 0,
                 borderBottomWidth: 0,
             },
-            headerLeft: () => (
-                <TouchableRipple
-                    onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
-                    style={{ marginLeft: 15, padding: 7 }}>
-                    <MaterialIcons name='sort' size={30} color='#000' />
-                </TouchableRipple>
-            ),
         })
     }
 
@@ -130,7 +123,7 @@ class Home extends Component {
                             inactiveDotScale={0.9}
                         />
                         <TouchableOpacity
-                            onPress={() => { }
+                            onPress={() => nav.navigate('semuaArtikel')
                             }>
                             <Text style={{ ...textStyles.mediumTextSemibold, color: colors.orange }}>Lihat Semua Artikel</Text>
                         </TouchableOpacity>

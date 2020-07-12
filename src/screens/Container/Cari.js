@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 // import { SearchBar } from 'react-native-paper';
-import styles from '../components/styles';
-import Spacer from '../components/common/Spacers';
-import { pencarian } from '../assets/data';
-import SpacerSmall from '../components/common/SpacerSmall';
-import colors from '../components/common/Color';
+import styles from '../../components/styles';
+import Spacer from '../../components/common/Spacers';
+import { pencarian } from '../../assets/data/data';
+import SpacerSmall from '../../components/common/SpacerSmall';
+import colors from '../../components/common/Color';
 import { Searchbar } from 'react-native-paper';
 
 class Cari extends Component {

@@ -7,10 +7,50 @@ const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
     },
     largeSpacer: {
         margin: 20
+    },
+    cardShadowWhiteContent: {
+        backgroundColor: '#ffff',
+        marginTop: 10,
+        marginBottom: 10,
+        paddingBottom: 25,
+    },
+    cardShadowNoRadius: {
+        backgroundColor: '#fff',
+        marginTop: 15,
+        marginBottom: 15,
+        marginLeft: 15,
+        marginRight: 15,
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        elevation: 2, shadowColor: 'grey',
+        shadowOpacity: 0.5, shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 }
+    },
+    cardShadowNoRadiusNew: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        marginVertical: 5,
+        marginHorizontal: 15,
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        elevation: 2, shadowColor: 'grey',
+        shadowOpacity: 0.5, shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 }
+    },
+    imageCardEditProfil: {
+        width: width / 4,
+        height: width / 4,
+        backgroundColor: 'transparent',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     spacersmall: {
         margin: 5,
@@ -28,7 +68,7 @@ export default StyleSheet.create({
         paddingVertical: 8,
         backgroundColor: colors.smoke,
         borderRadius: 5,
-        width: width / 1.3,
+        width: width - 35,
         flexDirection: 'row',
         alignItems: 'center',
     },

@@ -19,8 +19,8 @@ class UbahPassword extends Component {
             cpassword: '',
             cpassword2: '',
             secure: true,
-            csecure: false,
-            csecure2: false,
+            csecure: true,
+            csecure2: true,
         };
     }
 
@@ -45,7 +45,7 @@ class UbahPassword extends Component {
                         <View style={styles.row}>
                             <SimpleLineIcons name="lock" size={18} color={colors.gray} />
                             <TextInput
-                                placeholder="Konfirmasi Password"
+                                placeholder="Password"
                                 style={{ height: 40, width: width / 1.3, marginLeft: 10, ...textStyles.mediumText }}
                                 autoCapitalize='none'
                                 keyboardType='default'

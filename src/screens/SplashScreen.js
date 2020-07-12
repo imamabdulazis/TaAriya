@@ -16,7 +16,7 @@ class SplashScreen extends Component {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
                 <StatusBar backgroundColor={"white"} barStyle='light-content' />
                 <Image
-                    source={require('../assets/obeng.png')}
+                    source={require('../assets/img/obeng.png')}
                     style={{ width: 150, height: 150 }}
                 />
                 <View style={{ width: '100%', position: 'absolute', bottom: 15, alignItems: 'center' }}>

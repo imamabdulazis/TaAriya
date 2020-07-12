@@ -38,7 +38,7 @@ class MapInput extends React.Component {
                     textInputContainer: {
                         width: '100%',
                         backgroundColor: '#fff',
-                        height: 55
+                        height: 60
                     },
                     description: {
                         // fontFamily: 'SFProDisplay-Regular',

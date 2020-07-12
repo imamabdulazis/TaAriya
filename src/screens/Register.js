@@ -10,6 +10,7 @@ import textStyles from '../components/common/typography';
 import { Divider, TouchableRipple, HelperText } from 'react-native-paper';
 import Spacer from '../components/common/Spacers';
 import { SafeAreaView } from 'react-native';
+import * as nav from '../services/nav';
 
 const { width } = Dimensions.get('window');
 
@@ -120,8 +121,10 @@ class Register extends Component {
                                 onChangeText={(text) => this.setState({ alamat: text })}
                                 value={alamat}
                             />
-                            <TouchableOpacity onPress={this.toggleSecure}>
-                                <SimpleLineIcons name="location-pin" size={20} color={colors.gray} />
+                            <TouchableOpacity onPress={() => nav.navigate('mapsAuthScreen', {
+                                title: "Pilih Alamat"
+                            })}>
+                                <SimpleLineIcons name="location-pin" size={25} color={colors.gray} />
                             </TouchableOpacity>
                         </View>
                         <Divider />

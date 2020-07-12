@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View, StatusBar, FlatList, ActivityIndicator, ToastAndroid } from 'react-native'
+import { Text, View, StatusBar, FlatList, ActivityIndicator, ToastAndroid, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { ListItem, SearchBar } from 'react-native-elements'
 import styles from '../components/styles'
+import { riwww } from '../assets/data/data'
+import { Image } from 'react-native'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+
+const { width, height } = Dimensions.get('screen');
 
 export class Riwayat extends Component {
     state = {
@@ -108,25 +113,30 @@ export class Riwayat extends Component {
                 <View>
                     {this.renderHeader()}
                 </View>
-                <FlatList
-                    contentContainerStyle={{ marginTop: -10 }}
-                    keyExtractor={(item, index) => index.toString()}
-                    data={this.state.data}
-                    renderItem={({ item, index }) =>
-                        <ListItem
-                            onPress={() => ToastAndroid.show(item.first_name, ToastAndroid.LONG)}
-                            leftAvatar={{ rounded: false, source: { uri: item.avatar } }}
-                            title={item.first_name}
-                            subtitle={item.email}
-                            rightTitle={item.last_name}
-                            rightTitleStyle={{ fontSize: 12, color: 'red' }}
-                            bottomDivider
-                        />
+                <ScrollView>
+                    {
+                        riwww.map((item) => (
+                            <TouchableOpacity key={item.id} style={{ ...styles.cardShadowNoRadiusNew, flexDirection: 'row' }}>
+                                <Image
+                                    source={{ uri: item.image_url }}
+                                    style={{ width: width / 4, height: width / 4, borderRadius: (width / 4) / 2 }}
+                                />
+                                <View style={{ marginLeft: 20 }}>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Title Servis</Text>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Rp 50.0000</Text>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <SimpleLineIcons name="location-pin" size={15} color={'grey'} style={{ marginRight: 5 }} />
+                                        <Text>Lokasi Bengkel</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <SimpleLineIcons name="calendar" size={12} color={'grey'} style={{ marginRight: 5, marginLeft: 1 }} />
+                                        <Text>Tanggal</Text>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        ))
                     }
-                    ListFooterComponent={this.renderFooter.bind(this)}
-                    onRefresh={this.handleRefresh}
-                    refreshing={this.state.refreshing}
-                />
+                </ScrollView>
             </View>
         )
     }

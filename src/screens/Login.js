@@ -44,12 +44,15 @@ class Login extends Component {
         const { username, password, secure } = this.state;
         const { loading } = this.props;
         return (
-            <SafeAreaView style={{ ...styles.container, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{
+                ...styles.container, justifyContent: 'center',
+                alignItems: 'center',backgroundColor: '#fff'
+            }}>
                 {(loading) && <Loader title="Loging In" />}
                 <StatusBar translucent />
                 <SpacerBotTop>
                     <Image
-                        source={require('../assets/obeng.png')}
+                        source={require('../assets/img/obeng.png')}
                         style={{ width: 150, height: 150 }}
                     />
                 </SpacerBotTop>
@@ -107,8 +110,7 @@ class Login extends Component {
                         </View>
                     </SpacerBotTop>
                 </LargeSpacer>
-            </SafeAreaView >
-
+            </View>
         );
     }
 }

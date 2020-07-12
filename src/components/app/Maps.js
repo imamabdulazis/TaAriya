@@ -7,11 +7,12 @@ import MapView, { Callout, PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MyMapView from './MapsView';
 import MapInput from './MapInput';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import styles from './styles';
+import styles from '../styles';
 
 const { width, height } = Dimensions.get('screen');
 
 export class Maps extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +25,9 @@ export class Maps extends Component {
             name: 'Yogyakarta',
             alamat: 'Daerah Istimewa Yogyakarta',
         }
+        this.props.navigation.setOptions({
+            headerTitle: this.props.route.params.title
+        })
 
     }
 
