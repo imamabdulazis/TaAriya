@@ -3,10 +3,22 @@ import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../../components/styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { Image } from 'react-native';
 import Spacer from '../../components/common/Spacers';
+import { DrawerActions } from '@react-navigation/native';
 
-const Tentang = () => {
+const Tentang = (props) => {
+    props.navigation.setOptions({
+        headerTitle: "Tentang",
+        headerLeft: () => (
+            <TouchableOpacity
+                onPress={() => props.navigation.dispatch(DrawerActions.openDrawer())}
+                style={{ marginHorizontal: 20 }}>
+                <SimpleLineIcons name="menu" size={25} color={'black'} />
+            </TouchableOpacity>
+        )
+    })
     return (
         <View style={styles.container}>
             <ScrollView>

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Dimensions } from 'react-native';
-import styles from '../components/styles';
+import styles from '../../../components/styles';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import LargeSpacer from '../components/common/LargeSpacer';
-import SpacerBotTop from '../components/common/SpacerBotTop';
-import colors from '../components/common/Color';
-import textStyles from '../components/common/typography';
+import LargeSpacer from '../../../components/common/LargeSpacer';
+import SpacerBotTop from '../../../components/common/SpacerBotTop';
+import colors from '../../../components/common/Color';
+import textStyles from '../../../components/common/typography';
 import { Divider, TouchableRipple, HelperText } from 'react-native-paper';
-import Spacer from '../components/common/Spacers';
+import Spacer from '../../../components/common/Spacers';
 import { SafeAreaView } from 'react-native';
-import * as nav from '../services/nav';
+import * as nav from '../../../services/nav';
 
 const { width } = Dimensions.get('window');
 
-class Register extends Component {
+class RegisterAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +30,7 @@ class Register extends Component {
             messagePass: false
         };
         this.props.navigation.setOptions({
-            headerTitle: "Daftar User"
+            headerTitle: "Daftar Bengkel"
         })
     }
 
@@ -41,7 +41,7 @@ class Register extends Component {
         this.setState({ csecure: !this.state.csecure })
     }
 
-    handleRegister = () => {
+    handleRegisterAdmin = () => {
         if (this.state.password.length < 6 || this.state.cpassword.length < 6) {
             this.setState({ validatePass: true, messagePass: "Password minimal 6 karakter!" })
         } else if (this.state.password !== this.state.cpassword) {
@@ -60,7 +60,23 @@ class Register extends Component {
                         <View style={styles.row}>
                             <SimpleLineIcons name="user" size={18} color={colors.gray} />
                             <TextInput
-                                placeholder="Nama"
+                                placeholder="Nama bengkel"
+                                style={{ height: 40, width: width / 1.2, marginLeft: 10, ...textStyles.mediumText }}
+                                autoCapitalize='none'
+                                keyboardType='default'
+                                clearButtonMode='while-editing'
+                                onChangeText={(text) => this.setState({ nama: text })}
+                                value={nama}
+                            />
+                        </View>
+                        <Divider />
+                        <HelperText type="info" visible={false} style={{ marginTop: -10 }} />
+                    </SpacerBotTop>
+                    <SpacerBotTop>
+                        <View style={styles.row}>
+                            <SimpleLineIcons name="user" size={18} color={colors.gray} />
+                            <TextInput
+                                placeholder="Nama pemilik"
                                 style={{ height: 40, width: width / 1.2, marginLeft: 10, ...textStyles.mediumText }}
                                 autoCapitalize='none'
                                 keyboardType='default'
@@ -180,10 +196,10 @@ class Register extends Component {
                     <Spacer />
                     <SpacerBotTop>
                         <TouchableRipple
-                            onPress={this.handleRegister}
+                            onPress={this.handleRegisterAdmin}
                             disabled={nama.length === 0 || email.length === 0 || alamat.length === 0 || telepon.length === 0 || password.length === 0 || cpassword.length === 0 ? true : false}
                             style={nama.length === 0 || email.length === 0 || alamat.length === 0 || telepon.length === 0 || password.length === 0 || cpassword === 0 ? styles.btnContainNeutral : styles.btnContainPrimary}>
-                            <Text style={{ ...textStyles.mediumTextSemibold, color: nama.length === 0 || email.length === 0 || alamat.length === 0 || telepon.length === 0 || password.length === 0 || cpassword === 0 ? colors.gray : colors.white }}>Daftar Pengguna</Text>
+                            <Text style={{ ...textStyles.mediumTextSemibold, color: nama.length === 0 || email.length === 0 || alamat.length === 0 || telepon.length === 0 || password.length === 0 || cpassword === 0 ? colors.gray : colors.white }}>Daftar Bengkel</Text>
                         </TouchableRipple>
                     </SpacerBotTop>
                 </LargeSpacer>
@@ -192,4 +208,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default RegisterAdmin;

@@ -10,15 +10,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Spacer from '../components/common/Spacers';
-import styles from '../components/styles';
+import styles, { screenWidth } from '../components/styles';
 import LargeSpacer from '../components/common/LargeSpacer';
 import SpacerBotTop from '../components/common/SpacerBotTop';
 import colors from '../components/common/Color';
 import textStyles from '../components/common/typography';
 import { Divider, TouchableRipple, HelperText } from 'react-native-paper';
 import { connect } from 'react-redux';
-import LottieView from 'lottie-react-native';
 import Loader from '../components/common/Loader';
+import Modal from 'react-native-modal';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -29,6 +29,7 @@ class Login extends Component {
             username: '',
             password: '',
             secure: true,
+            dialog: false,
         };
     }
 
@@ -40,13 +41,27 @@ class Login extends Component {
         this.setState({ secure: !this.state.secure });
     }
 
+    toggleDialog = () => {
+        this.setState({ dialog: !this.state.dialog })
+    }
+
+    goAdmin = () => {
+        this.toggleDialog();
+        nav.navigate('registerAdminScreen')
+    }
+
+    goUser = () => {
+        this.toggleDialog()
+        nav.navigate('registerScreen')
+    }
+
     render() {
         const { username, password, secure } = this.state;
         const { loading } = this.props;
         return (
             <View style={{
                 ...styles.container, justifyContent: 'center',
-                alignItems: 'center',backgroundColor: '#fff'
+                alignItems: 'center', backgroundColor: '#fff'
             }}>
                 {(loading) && <Loader title="Loging In" />}
                 <StatusBar translucent />
@@ -104,12 +119,34 @@ class Login extends Component {
                     </SpacerBotTop>
                     <SpacerBotTop>
                         <View style={styles.rowBetweenCenter}>
-                            <TouchableOpacity onPress={() => nav.navigate('registerScreen')}>
+                            <TouchableOpacity onPress={this.toggleDialog}>
                                 <Text style={{ ...textStyles.mediumTextSemibold, color: colors.pink }}>Daftar</Text>
                             </TouchableOpacity>
                         </View>
                     </SpacerBotTop>
                 </LargeSpacer>
+
+                <Modal
+                    isVisible={this.state.dialog}
+                    onBackdropPress={this.toggleDialog}
+                    style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: screenWidth / 1.5, backgroundColor: colors.white, borderRadius: 10, padding: 10 }}>
+                        <Text style={textStyles.largeTextSemibold}>Konfirmasi Daftar</Text>
+                        <SpacerBotTop>
+                            <Text style={textStyles.mediumText}>Anda ingin mendaftar sebagai?</Text>
+                        </SpacerBotTop>
+                        <SpacerBotTop />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+                            <TouchableOpacity onPress={this.goAdmin}>
+                                <Text style={{ ...textStyles.mediumTextSemibold }}>Bengkel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.goUser}>
+                                <Text style={{ ...textStyles.mediumTextSemibold }}>Pengguna</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <Spacer/>
+                    </View>
+                </Modal>
             </View>
         );
     }

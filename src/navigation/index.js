@@ -15,7 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Cari from '../screens/Container/Cari';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import SplashScreen from '../screens/SplashScreen';
 import Pengaturan from '../screens/Container/Pengaturan';
 import Login from '../screens/Login';
@@ -31,6 +31,10 @@ import Transaksi from '../screens/Container/Transaksi';
 import Maps from '../components/app/Maps';
 import SemuaArtikel from '../screens/Container/SemuaArtikel';
 import DetailServis from '../screens/Container/DetailServis';
+import MainDrawer from './indexAdmin';
+import { ActivityIndicator } from 'react-native';
+import colors from '../components/common/Color';
+import RegisterAdmin from '../screens/Admin/Auth/RegisterAdmin';
 
 
 const Stack = createStackNavigator();
@@ -54,6 +58,7 @@ const AUTH = () => {
         }}>
             <Stack.Screen name='loginScreen' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='registerScreen' component={Register} />
+            <Stack.Screen name='registerAdminScreen' component={RegisterAdmin} />
             <Stack.Screen name='mapsAuthScreen' component={Maps} />
         </Stack.Navigator>
     )
@@ -241,25 +246,33 @@ const APPTAB = ({ navigation, route }) => {
 
 class MAINAPP extends React.Component {
     state = {
-        splash: true
+        splash: true,
+        loadingScreen: true
     }
     componentDidMount() {
         setTimeout(() => { this.setState({ splash: false }) }, 1500)
+        setTimeout(() => { this.setState({ loadingScreen: false }) }, 2500)
     }
     render() {
-        const { token } = this.props;
+        const { token, loginType } = this.props;
         if (this.state.splash) {
             return <SplashScreen />
         }
         return (
             <NavigationContainer ref={navigationRef}>
+                {/* <Modal visible={this.state.loadingScreen}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <ActivityIndicator size={'large'} color={colors.orange} />
+                    </View>
+                </Modal> */}
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
                     initialRouteName='mainApp'>
                     {
                         token === undefined
                             ? <Stack.Screen name='authApp' component={AUTH} />
-                            : <Stack.Screen name='mainApp' component={APPTAB} />
+                            : loginType === 'user' ? <Stack.Screen name='mainApp' component={APPTAB} />
+                                : <Stack.Screen name='mainApp' component={MainDrawer} />
                     }
                 </Stack.Navigator>
             </NavigationContainer>
@@ -269,6 +282,7 @@ class MAINAPP extends React.Component {
 
 const mapStateToProps = (state) => ({
     token: state.user.token,
+    loginType: state.user.loginType,
 })
 
 const mapDispatchToProps = (dispatch) => ({

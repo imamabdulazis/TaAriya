@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import colors from './common/Color';
 
-const { width, height } = Dimensions.get('window');
+export const screenWidth = Dimensions.get('window').width;
+export const screenHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
     container: {
@@ -45,8 +46,8 @@ export default StyleSheet.create({
         shadowOffset: { width: 0, height: 2 }
     },
     imageCardEditProfil: {
-        width: width / 4,
-        height: width / 4,
+        width: screenWidth / 4,
+        height: screenWidth / 4,
         backgroundColor: 'transparent',
         borderRadius: 25,
         justifyContent: 'center',
@@ -68,12 +69,12 @@ export default StyleSheet.create({
         paddingVertical: 8,
         backgroundColor: colors.smoke,
         borderRadius: 5,
-        width: width - 35,
+        width: screenWidth - 35,
         flexDirection: 'row',
         alignItems: 'center',
     },
     searchBar: {
-        width: width / 1.25,
+        width: screenWidth / 1.25,
         marginLeft: -20,
         height: 45,
         elevation: 0,
@@ -119,6 +120,13 @@ export default StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
     },
+    menuDrawerMain: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+    },
     menuTitleStyle: {
         fontWeight: '300',
         fontSize: 14,
@@ -128,7 +136,7 @@ export default StyleSheet.create({
     btnContainPrimary: {
         paddingHorizontal: 20,
         paddingVertical: 10,
-        width: width - 40,
+        width: screenWidth - 40,
         backgroundColor: colors.primary,
         borderRadius: 5,
         alignItems: 'center',
@@ -137,7 +145,7 @@ export default StyleSheet.create({
     btnContainNeutral: {
         paddingHorizontal: 20,
         paddingVertical: 10,
-        width: width - 40,
+        width: screenWidth - 40,
         backgroundColor: colors.lightgray,
         borderRadius: 5,
         alignItems: 'center',
@@ -146,7 +154,7 @@ export default StyleSheet.create({
     btnContainNeutral: {
         paddingHorizontal: 20,
         paddingVertical: 10,
-        width: width - 40,
+        width: screenWidth - 40,
         backgroundColor: colors.lightgray,
         borderRadius: 5,
         alignItems: 'center',
@@ -155,7 +163,7 @@ export default StyleSheet.create({
     btnOutlineNeutral: {
         paddingHorizontal: 20,
         paddingVertical: 10,
-        width: width - 40,
+        width: screenWidth - 40,
         backgroundColor: colors.white,
         borderRadius: 5,
         borderWidth: 1,
@@ -166,7 +174,7 @@ export default StyleSheet.create({
     btnOutlinePrimary: {
         paddingHorizontal: 20,
         paddingVertical: 10,
-        width: width - 40,
+        width: screenWidth - 40,
         backgroundColor: colors.white,
         borderRadius: 5,
         borderWidth: 1,
@@ -175,8 +183,8 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     btnMenuHome: {
-        width: width / 6, borderRadius: (width / 6) / 2,
-        height: width / 6, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fa6226'
+        width: screenWidth / 6, borderRadius: (screenWidth / 6) / 2,
+        height: screenWidth / 6, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fa6226'
     },
     // flex direction
     row: {
@@ -199,13 +207,13 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
     },
     rowBottomAbsoluteBeetwen: {
-        width: width - 80,
+        width: screenWidth - 80,
         bottom: 10, position: 'absolute',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
     rowBottomAbsoluteCenter: {
-        width: width,
+        width: screenWidth,
         bottom: 10, position: 'absolute',
         flexDirection: 'row',
         justifyContent: 'center',
