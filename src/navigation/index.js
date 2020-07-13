@@ -35,6 +35,10 @@ import MainDrawer from './indexAdmin';
 import { ActivityIndicator } from 'react-native';
 import colors from '../components/common/Color';
 import RegisterAdmin from '../screens/Admin/Auth/RegisterAdmin';
+import ServisMotor from '../screens/Container/ServisMotor';
+import ServisBan from '../screens/Container/ServisBan';
+import BodyRepair from '../screens/Container/BodyRepair';
+import Aksesoris from '../screens/Container/Aksesoris';
 
 
 const Stack = createStackNavigator();
@@ -91,6 +95,12 @@ const HOME = ({ navigation, route }) => {
             <Stack.Screen name="cari" component={Cari} />
             <Stack.Screen name="pengaturan" component={Pengaturan} />
             <Stack.Screen name="semuaArtikel" component={SemuaArtikel} />
+
+            <Stack.Screen name="servisMotor" component={ServisMotor} />
+            <Stack.Screen name="servisBan" component={ServisBan} />
+            <Stack.Screen name="bodyRepair" component={BodyRepair} />
+            <Stack.Screen name="aksesoris" component={Aksesoris} />
+
         </Stack.Navigator>
     )
 }
@@ -260,11 +270,6 @@ class MAINAPP extends React.Component {
         }
         return (
             <NavigationContainer ref={navigationRef}>
-                {/* <Modal visible={this.state.loadingScreen}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <ActivityIndicator size={'large'} color={colors.orange} />
-                    </View>
-                </Modal> */}
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
                     initialRouteName='mainApp'>

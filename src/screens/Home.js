@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Dimensions, TouchableHighlight, StatusBar, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions, TouchableHighlight, StatusBar, ImageBackground, Modal, ActivityIndicator } from 'react-native';
 import moment from 'moment'
 import * as nav from '../services/nav';
 import 'moment/locale/id';
@@ -27,6 +27,7 @@ class Home extends Component {
         super(props);
         this.state = {
             currentIndex: 0,
+            loadingscreen: true,
         };
         this.props.navigation.setOptions({
             headerTitle: () => (
@@ -57,6 +58,12 @@ class Home extends Component {
         })
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ loadingscreen: false })
+        }, 1500);
+    }
+
 
     _renderItem = ({ item, index }) => {
         return (
@@ -78,7 +85,7 @@ class Home extends Component {
 
     render() {
         const { navigation } = this.props;
-        const { currentIndex } = this.state;
+        const { currentIndex, loadingscreen } = this.state;
         return (
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 <StatusBar backgroundColor='#fff' barStyle='dark-content' />
@@ -140,85 +147,66 @@ class Home extends Component {
                     <Spacer />
                     <Spacer />
                     <View style={{ width: width - 30, marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <AntDesign name='setting' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Servis</Text>
-                                <Text style={{ color: colors.black }}>Mesin</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='lifebuoy' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Tambal</Text>
-                                <Text style={{ color: colors.black }}>Ban</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='layers' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Ganti</Text>
-                                <Text style={{ color: colors.black }}>Jok</Text>
-                            </View>
-                        </View>
-
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='sina-weibo' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Ganti</Text>
-                                <Text style={{ color: colors.black }}>Oli</Text>
-                            </View>
-                        </View>
+                        <TouchableOpacity
+                            onPress={() => nav.navigate('servisMotor')}
+                            style={{
+                                padding: 10, backgroundColor: 'white', borderRadius: 10, ...styles.divRowStart,
+                                elevation: 2, shadowColor: 'grey',
+                                shadowOpacity: 0.5, shadowRadius: 5,
+                                shadowOffset: { width: 0, height: 2 }
+                            }}>
+                            <Entypo name='layers' size={40} color={colors.orange} />
+                            <SpacerSmall />
+                            <Text style={{ ...textStyles.mediumTextSemibold, color: colors.black }}>Servis Motor</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => nav.navigate('servisBan')}
+                            style={{
+                                padding: 10, backgroundColor: 'white', borderRadius: 10, ...styles.divRowStart,
+                                elevation: 2, shadowColor: 'grey',
+                                shadowOpacity: 0.5, shadowRadius: 5,
+                                shadowOffset: { width: 0, height: 2 }
+                            }}>
+                            <Entypo name='rdio' size={40} color={colors.orange} />
+                            <SpacerSmall />
+                            <Text style={{ ...textStyles.mediumTextSemibold, color: colors.black }}>Servis Ban</Text>
+                        </TouchableOpacity>
                     </View>
                     <Spacer />
                     <View style={{ width: width - 30, marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='sound' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Servis</Text>
-                                <Text style={{ color: colors.black }}>Lampu</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='bell' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Servis</Text>
-                                <Text style={{ color: colors.black }}>Klakson</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='shopping-cart' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Beli</Text>
-                                <Text style={{ color: colors.black }}>Onderdil</Text>
-                            </View>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={styles.btnMenuHome}>
-                                <Entypo name='landline' size={40} color='#fff' />
-                            </TouchableOpacity>
-                            <View style={{ alignItems: 'center' }}>
-                                <Text style={{ color: colors.black }}>Hubungi</Text>
-                                <Text style={{ color: colors.black }}>Bengkel</Text>
-                            </View>
-                        </View>
+                        <TouchableOpacity
+                            onPress={() => nav.navigate('bodyRepair')}
+                            style={{
+                                padding: 10, backgroundColor: 'white', borderRadius: 10, ...styles.divRowStart,
+                                elevation: 2, shadowColor: 'grey',
+                                shadowOpacity: 0.5, shadowRadius: 5,
+                                shadowOffset: { width: 0, height: 2 }
+                            }}>
+                            <Entypo name='sweden' size={40} color={colors.orange} />
+                            <SpacerSmall />
+                            <Text style={{ ...textStyles.mediumTextSemibold, color: colors.black }}>Body Repair</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => nav.navigate('aksesoris')}
+                            style={{
+                                padding: 10, backgroundColor: 'white', borderRadius: 10, ...styles.divRowStart,
+                                elevation: 2, shadowColor: 'grey',
+                                shadowOpacity: 0.5, shadowRadius: 5,
+                                shadowOffset: { width: 0, height: 2 }
+                            }}>
+                            <Entypo name='palette' size={40} color={colors.orange} />
+                            <SpacerSmall />
+                            <Text style={{ ...textStyles.mediumTextSemibold, color: colors.black }}> Aksesoris</Text>
+                        </TouchableOpacity>
                     </View>
                     <Spacer />
                 </ScrollView>
+                <Modal
+                    visible={this.state.loadingscreen}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+                        <ActivityIndicator size="large" color={colors.orange} />
+                    </View>
+                </Modal>
             </View>
         );
     }

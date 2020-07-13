@@ -18,6 +18,22 @@ export default StyleSheet.create({
         marginBottom: 10,
         paddingBottom: 25,
     },
+    btnSetting: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center', paddingHorizontal: 10,
+        paddingVertical: 5
+    },
+    cardShadowWhiteHalfWidth: {
+        borderRadius: 15,
+        paddingVertical: 15,
+        backgroundColor: '#fff',
+        width: screenWidth / 2.3,
+        paddingHorizontal: 0,
+        elevation: 2, shadowColor: colors.gray,
+        shadowOpacity: 0.5, shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 }
+    },
     cardShadowNoRadius: {
         backgroundColor: '#fff',
         marginTop: 15,

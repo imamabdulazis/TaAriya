@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import styles from '../../../components/styles';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { DrawerActions } from '@react-navigation/native';
-import UbahProfil from '../../Container/UbahProfil';
-import styles from '../../../components/styles';
 
-class Profil extends Component {
+class PesananServis extends Component {
     constructor(props) {
         super(props);
         this.props.navigation.setOptions({
-            headerTitle: "Profil",
+            headerTitle: "Pesanan Servis",
             headerLeft: () => (
                 <TouchableOpacity
                     onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
@@ -25,10 +24,10 @@ class Profil extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <UbahProfil />
+                <Text> PesananServis </Text>
             </View>
         );
     }
 }
 
-export default Profil;
+export default PesananServis;

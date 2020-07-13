@@ -1,38 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import { DrawerActions } from '@react-navigation/native';
-import styles, { screenWidth } from '../../../components/styles';
-import { TextInput } from 'react-native-gesture-handler';
 import moment from 'moment';
-import SpacerSmall from '../../../components/common/SpacerSmall';
-import colors from '../../../components/common/Color';
-import textStyles from '../../../components/common/typography';
-import { CheckBox } from 'react-native-elements';
-import Spacer from '../../../components/common/Spacers';
+import { View, Text, TouchableOpacity } from 'react-native';
+import styles, { screenWidth } from '../../components/styles';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import SpacerSmall from '../../components/common/SpacerSmall';
+import { TextInput } from 'react-native-gesture-handler';
+import colors from '../../components/common/Color';
+import textStyles from '../../components/common/typography';
+import Spacer from '../../components/common/Spacers';
 
-class Laporan extends Component {
+class ServisMotor extends Component {
     constructor(props) {
         super(props);
-        this.props.navigation.setOptions({
-            headerTitle: "Laporan",
-            headerLeft: () => (
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
-                    style={{ marginHorizontal: 20 }}>
-                    <SimpleLineIcons name="menu" size={25} color={'black'} />
-                </TouchableOpacity>
-            )
-        })
         this.state = {
+            
         };
+        this.props.navigation.setOptions({
+            headerTitle: "Servis Motor"
+        });
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.cardShadowNoRadius}>
-                    <Text style={{ ...textStyles.mediumText, color: colors.gray }}>Dari</Text>
                     <View style={styles.divRowStart}>
                         <SimpleLineIcons name="calendar" size={15} color={'black'} />
                         <SpacerSmall />
@@ -43,25 +34,42 @@ class Laporan extends Component {
                             editable={false}
                         />
                     </View>
-                    <Text style={{ ...textStyles.mediumText, color: colors.gray }}>Sampai</Text>
+                    <Spacer />
                     <View style={styles.divRowStart}>
-                        <SimpleLineIcons name="calendar" size={15} color={'black'} />
                         <SpacerSmall />
                         <TextInput
+                            placeholder="Masukkan servis"
                             style={{ width: screenWidth / 1.4, color: colors.black }}
-                            value={`${moment().format('DD, MMM YYYY')}`}
                             underlineColorAndroid={colors.gray}
-                            editable={false}
                         />
                     </View>
-                    <CheckBox
-                        title='PDF'
-                        checked={true}
-                    />
-                    <CheckBox
-                        title='Lihat'
-                        checked={this.state.checked}
-                    />
+                    <Spacer />
+                    <View style={styles.divRowStart}>
+                        <SpacerSmall />
+                        <TextInput
+                            placeholder="Merk Motor"
+                            style={{ width: screenWidth / 1.4, color: colors.black }}
+                            underlineColorAndroid={colors.gray}
+                        />
+                    </View>
+                    <Spacer />
+                    <View style={styles.divRowStart}>
+                        <SpacerSmall />
+                        <TextInput
+                            placeholder="Nomor telepon"
+                            style={{ width: screenWidth / 1.4, color: colors.black }}
+                            underlineColorAndroid={colors.gray}
+                        />
+                    </View>
+                    <Spacer />
+                    <View style={styles.divRowStart}>
+                        <SpacerSmall />
+                        <TextInput
+                            placeholder="Nama"
+                            style={{ width: screenWidth / 1.4, color: colors.black }}
+                            underlineColorAndroid={colors.gray}
+                        />
+                    </View>
                     <Spacer />
                     <Spacer />
                     <Spacer />
@@ -76,7 +84,7 @@ class Laporan extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <Text style={{ ...textStyles.mediumTextSemibold, color: colors.white }}>Submit</Text>
+                        <Text style={{ ...textStyles.mediumTextSemibold, color: colors.white }}>Booking Servis</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -84,4 +92,4 @@ class Laporan extends Component {
     }
 }
 
-export default Laporan;
+export default ServisMotor;

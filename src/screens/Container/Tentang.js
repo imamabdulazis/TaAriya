@@ -4,19 +4,27 @@ import styles from '../../components/styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Image } from 'react-native';
 import Spacer from '../../components/common/Spacers';
 import { DrawerActions } from '@react-navigation/native';
+import { connect } from 'react-redux';
 
 const Tentang = (props) => {
     props.navigation.setOptions({
         headerTitle: "Tentang",
         headerLeft: () => (
-            <TouchableOpacity
-                onPress={() => props.navigation.dispatch(DrawerActions.openDrawer())}
-                style={{ marginHorizontal: 20 }}>
-                <SimpleLineIcons name="menu" size={25} color={'black'} />
-            </TouchableOpacity>
+            props.loginType === 'admin'
+                ? <TouchableOpacity
+                    onPress={() => props.navigation.dispatch(DrawerActions.openDrawer())}
+                    style={{ marginHorizontal: 20 }}>
+                    <SimpleLineIcons name="menu" size={25} color={'black'} />
+                </TouchableOpacity>
+                : <TouchableOpacity
+                    onPress={() => props.navigation.goBack()}
+                    style={{ marginHorizontal: 20 }}>
+                    <MaterialIcons name="arrow-back" size={25} color={'black'} />
+                </TouchableOpacity >
         )
     })
     return (
@@ -130,4 +138,10 @@ const Tentang = (props) => {
     );
 }
 
-export default Tentang;
+const mapStateTopProps = (state) => {
+    return {
+        loginType: state.user.loginType,
+    }
+}
+
+export default connect(mapStateTopProps)(Tentang);

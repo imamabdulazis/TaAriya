@@ -8,8 +8,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ImageBackground } from 'react-native';
 import { Dimensions } from 'react-native';
 import * as nav from '../../services/nav';
+import { connect } from 'react-redux';
 
-const UbahProfil = () => {
+const UbahProfil = (props) => {
     return (
         <View style={styles.container}>
             <ScrollView
@@ -61,21 +62,28 @@ const UbahProfil = () => {
                         <Text style={{ color: '#3A4759', fontFamily: 'SFProDisplay-Light', fontSize: 14 }}>23432423</Text>
                     </Spacer>
                     <Spacer />
-                    <Spacer>
-                        <Text style={{ color: '#C4C4C4', fontFamily: 'SFProDisplay-Light', fontSize: 12 }}>Alamat</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent:'space-between' }}>
-                            <Text style={{ color: '#3A4759', fontFamily: 'SFProDisplay-Light', fontSize: 14 }}>alamt</Text>
-                            <TouchableOpacity onPress={() => nav.navigate('mapsAkun', {
-                                title: "Ubah Alamat"
-                            })}>
-                                <SimpleLineIcons name="location-pin" size={25} color={'grey'} />
-                            </TouchableOpacity>
-                        </View>
-                    </Spacer>
+                    {
+                        props.loginType === 'admin' ?
+                            <Spacer>
+                                <Text style={{ color: '#C4C4C4', fontFamily: 'SFProDisplay-Light', fontSize: 12 }}>Alamat</Text>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <Text style={{ color: '#3A4759', fontFamily: 'SFProDisplay-Light', fontSize: 14 }}>alamt</Text>
+                                    <TouchableOpacity onPress={() => { }}>
+                                        <SimpleLineIcons name="location-pin" size={25} color={'grey'} />
+                                    </TouchableOpacity>
+                                </View>
+                            </Spacer> : null
+                    }
                 </View>
             </ScrollView>
-        </View>
+        </View >
     );
 }
 
-export default UbahProfil;
+const mapMapstateToProps = (state) => {
+    return {
+        loginType: state.user.loginType,
+    }
+}
+
+export default connect(mapMapstateToProps)(UbahProfil);

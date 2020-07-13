@@ -50,24 +50,14 @@ function DrawerContent() {
                             <Text style={styles.menuTitleStyle}>Dashbaord</Text>
                         </View>
                     </TouchableRipple>
-                    <TouchableRipple onPress={() => nav.navigate('notifikasiStack')}>
+                    <TouchableRipple onPress={() => nav.navigate('pesananStack')}>
                         <View style={styles.menuDrawer}>
                             <SimpleLineIcons
-                                name="bell"
+                                name="layers"
                                 color={colors.black}
                                 size={25}
                             />
-                            <Text style={styles.menuTitleStyle}>Notifikasi</Text>
-                        </View>
-                    </TouchableRipple>
-                    <TouchableRipple onPress={() => nav.navigate('chatStack')}>
-                        <View style={styles.menuDrawer}>
-                            <SimpleLineIcons
-                                name="speech"
-                                color={colors.black}
-                                size={24}
-                            />
-                            <Text style={styles.menuTitleStyle}>Chat</Text>
+                            <Text style={styles.menuTitleStyle}>Pesanan Servis</Text>
                         </View>
                     </TouchableRipple>
                     <TouchableRipple onPress={() => nav.navigate('produkStack')}>
@@ -80,6 +70,27 @@ function DrawerContent() {
                             <Text style={styles.menuTitleStyle}>Produk</Text>
                         </View>
                     </TouchableRipple>
+                    <TouchableRipple onPress={() => nav.navigate('notifikasiStack')}>
+                        <View style={styles.menuDrawer}>
+                            <SimpleLineIcons
+                                name="bell"
+                                color={colors.black}
+                                size={25}
+                            />
+                            <Text style={styles.menuTitleStyle}>Notifikasi</Text>
+                        </View>
+                    </TouchableRipple>
+                    {/* <TouchableRipple onPress={() => nav.navigate('chatStack')}>
+                        <View style={styles.menuDrawer}>
+                            <SimpleLineIcons
+                                name="speech"
+                                color={colors.black}
+                                size={24}
+                            />
+                            <Text style={styles.menuTitleStyle}>Chat</Text>
+                        </View>
+                    </TouchableRipple> */}
+
                 </Drawer.Section>
 
                 <Drawer.Section
